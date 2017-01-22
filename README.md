@@ -15,6 +15,8 @@ const char* WifiSSID      = "****";
 const char* WifiPassword  = "****";
 ```
 
+##Hardware Breadboard
+![Breadboard](https://raw.githubusercontent.com/Diggen85/ESP-I2CCUL-Bridge/master/Breadboard.jpg)
 
 
 # License
