@@ -1,6 +1,6 @@
-### ESP-I2CCUL-Bridge
+# ESP-I2CCUL-Bridge
 
-Proof-of-Concept to connect many CUL devices over Wifi and Õnterface them like a SCC device, writen in Arduino C.
+Proof-of-Concept to connect many CUL devices over Wifi and √çnterface them like a SCC device, writen in Arduino C.
 Needs the I2CCUL firmware with an unique Address (see a-culfw fork)
 
 ##I2CCUL Device definition
@@ -17,7 +17,7 @@ const char* WifiPassword  = "****";
 
 
 
-#### License
+# License
 ```
 This program is free software; you can redistribute it and/or modify it under  
 the terms of the GNU General Public License as published by the Free Software  
