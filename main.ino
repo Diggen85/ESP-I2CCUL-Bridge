@@ -86,7 +86,7 @@ void setup() {
 
   //Server starten
   TCPServer.begin();
-  Serial.print("Warte an: ");
+  Serial.print("Wait for connection on: ");
   Serial.print(WiFi.localIP());
   Serial.print(":");
   Serial.println(ServerPort);
@@ -133,6 +133,8 @@ void loop() {
           char Msg[257];
           int j=0;
           for (int pos=i;pos < SocketToI2CCount+1; pos++) {
+          //    Wire.write(SocketToI2C[pos]);
+          //    Serial.print(SocketToI2C[pos]);
             Msg[j++]=SocketToI2C[pos];
           }
           Msg[j]= '\0'; //Ende
@@ -168,12 +170,11 @@ if (TCPClient.connected()) {
     bool quit=false;
     while(!quit) 
     {
-      // immer 4Bytes holen - Adruino FIX da feste Byte Anzahl benötigt
+      // immer 8Bytes holen - Adruino - FIX da feste Byte Anzahl benötigt
       Wire.requestFrom(CULADDR[i],8);
       if (Wire.available() == 0) quit = true;
       while(Wire.available()) {
         char c = Wire.read();
-        //Serial.println(c,HEX);
         if ( c == '\n' && I2CToSocket[i][I2CToSocketCount[i]-1] == '\r' ) {
           //senden
           Serial.print(" I2CToSocket: ");
@@ -204,7 +205,7 @@ if (TCPClient.connected()) {
           //nicht schreiben nicht erhöhen
           // Schleife beenden
           quit = true;
-          break; //while(Wire.available())
+          //break; //while(Wire.available()) //Nicht beenden da ja neue daten wieder in den Buffer gerutscht sein könnten
         } else if (I2CToSocketCount[i] == 255) {
           Serial.println("I2CToSocket Buffer Überlauf");
           I2CToSocketCount[i] = 0;
