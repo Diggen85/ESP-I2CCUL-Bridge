@@ -22,7 +22,8 @@ const char CULADDR[CULCOUNT] = {0x7e, 0x7d, 0x7c};
 #define MAXMSGSIZE      128 // Maxsize of a CUL Message
 #define I2CBYTECOUNT    8  // Get this amount of Bytes at each read request
 
-#define CUL_BOOTLOADER_WAIT 10 //Sec. to wait after Releasing reset for CUL Bootloader to process
+#define CUL_BOOTLOADER_WAIT 9 //Sec. to wait after Releasing reset for CUL Bootloader to process 
+                              //00_CUL.pm waits just 3*3 Seconds, the bootloader requires 8-9 Seconds to start
 
 #define LED_PIN         2  //WEMOS D4 Buildin LED/Pull-Up
 #define LED_OFF         digitalWrite(LED_PIN,HIGH)
@@ -60,9 +61,7 @@ void setup() {
   Serial.println(ESP.getFreeHeap());
 
   //Hold Reset of CULS low
-  pinMode(RESET_PIN,OUTPUT);
-  RESET_HOLD;
-  Serial.println("Hold CUL in Reset");
+  resetInit();
 
   // Button for WifiManager Reset
   pinMode(BUTTON_PIN,INPUT);
@@ -115,6 +114,12 @@ void setup() {
 void ledInit() {
   pinMode(LED_PIN,OUTPUT); //LED Ausgang
   LED_OFF;
+}
+
+void resetInit() {
+  pinMode(RESET_PIN,OUTPUT);
+  RESET_HOLD;
+  Serial.println("Hold CUL in Reset");
 }
 
 void handleClientConnection() {
