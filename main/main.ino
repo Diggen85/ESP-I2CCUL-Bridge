@@ -18,20 +18,20 @@ const int ServerPort  = 23;
 //CUL Interface
 #define I2CFREQ         400000
 #define CULCOUNT        3
-const char CULADDR[CULCOUNT] = {0x7e, 0x7d, 0x7c};
+const char CULADDR[CULCOUNT] = {0x70, 0x71, 0x72};
 #define MAXMSGSIZE      128 // Maxsize of a CUL Message
 #define I2CBYTECOUNT    8  // Get this amount of Bytes at each read request
 
-#define CUL_BOOTLOADER_WAIT 9 //Sec. to wait after Releasing reset for CUL Bootloader to process 
+#define CUL_BOOTLOADER_WAIT 9 //Sec. to wait after Releasing reset for CUL Bootloader to process
                               //00_CUL.pm waits just 3*3 Seconds, the bootloader requires 8-9 Seconds to start
 
-#define LED_PIN         2  //WEMOS D4 Buildin LED/Pull-Up
+#define LED_PIN         2  //WEMOS D4 Buildin LED/Pull-Up - GPIO2
 #define LED_OFF         digitalWrite(LED_PIN,HIGH)
 #define LED_ON          digitalWrite(LED_PIN,LOW)
 
-#define BUTTON_PIN      0  //WEMOS D3 Pull-Up
+#define BUTTON_PIN      0  //WEMOS D3 Pull-Up - GPIO0
 
-#define RESET_PIN       16  //WEMOS D0
+#define RESET_PIN       16  //WEMOS D0 - GPIO16
 #define RESET_HOLD      digitalWrite(RESET_PIN,HIGH)
 #define RESET_RELEASE   digitalWrite(RESET_PIN,LOW)
 
@@ -256,6 +256,7 @@ void loop() {
     Serial.println("Reset Setting and restart");
     WiFiManager wifiManager;
     wifiManager.resetSettings();
-    ESP.restart();   
+    ESP.restart();  
+    delay(3*1000); //Just wait for Reset 
   }
 }
