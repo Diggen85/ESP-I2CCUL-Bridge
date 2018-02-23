@@ -7,7 +7,7 @@ Needs the I2CCUL firmware with an unique Address (see heliflieger/a-culfw )
 ## I2CCUL Device Addresses
 ```
 #define CULCOUNT       4
-const char CULADDR[CULCOUNT] = {0x70, 0x71, 0x7c2, 0x73;
+const char CULADDR[CULCOUNT] = {0x70, 0x71, 0x7c2, 0x73};
 ```
 
 ## Hardware Breadboard
