@@ -4,17 +4,10 @@ Adapter um mehrere CULs über I2C an einem ESP im Wifi bereitzustellen.
 Connect many CUL devices over Wifi and Ínterface them like a SCC device, writen in Arduino C.
 Needs the I2CCUL firmware with an unique Address (see heliflieger/a-culfw )
 
-##I2CCUL Device definition
+##I2CCUL Device Addresses
 ```
 #define CULCOUNT       4
 const char CULADDR[CULCOUNT] = {0x70, 0x71, 0x7c2, 0x73;
-```
-
-##Wifi Credentials
-```
-const char* WifiSSID      = "****";
-const char* WifiPassword  = "****";
-```
 
 ##Hardware Breadboard
 ![Breadboard](https://raw.githubusercontent.com/Diggen85/ESP-I2CCUL-Bridge/master/Breadboard.jpg)
